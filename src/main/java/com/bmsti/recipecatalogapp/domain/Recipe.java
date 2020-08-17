@@ -1,6 +1,7 @@
 package com.bmsti.recipecatalogapp.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author angelo santos
@@ -21,6 +22,9 @@ public class Recipe {
     private String source;
     private String url;
     //private Difficulty difficulty;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     @Lob
     private Byte[] image;
@@ -98,5 +102,13 @@ public class Recipe {
 
     public void setNote(Note note) {
         this.note = note;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
