@@ -28,11 +28,17 @@ public class Recipe {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
 
-    @Lob
-    private Byte[] image;
-
     @OneToOne(cascade = CascadeType.ALL)
     private Note note;
+
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+        joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
+
+    @Lob
+    private Byte[] image;
 
     public Long getId() {
         return id;
@@ -90,20 +96,12 @@ public class Recipe {
         this.url = url;
     }
 
-    public Byte[] getImage() {
-        return image;
+    public Difficulty getDifficulty() {
+        return difficulty;
     }
 
-    public void setImage(Byte[] image) {
-        this.image = image;
-    }
-
-    public Note getNote() {
-        return note;
-    }
-
-    public void setNote(Note note) {
-        this.note = note;
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     public Set<Ingredient> getIngredients() {
@@ -114,11 +112,27 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public Difficulty getDifficulty() {
-        return difficulty;
+    public Note getNote() {
+        return note;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
+    public void setNote(Note note) {
+        this.note = note;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
     }
 }
