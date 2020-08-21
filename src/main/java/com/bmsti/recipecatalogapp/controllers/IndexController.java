@@ -5,6 +5,7 @@ import com.bmsti.recipecatalogapp.domain.UnitOfMeasure;
 import com.bmsti.recipecatalogapp.repositories.CategoryRepository;
 import com.bmsti.recipecatalogapp.repositories.UnitOfMeasureRepository;
 import com.bmsti.recipecatalogapp.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import java.util.Optional;
  * @version 1.0
  * @since 17/08/2020
  */
+@Slf4j
 @Controller
 public class IndexController {
 
